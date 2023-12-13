@@ -44,7 +44,7 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                 ),
                 child:Container(
                   alignment: Alignment.topLeft,
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.fromLTRB(15,15,15,0),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
@@ -94,19 +94,22 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                             )
                         ],
                       ),
-                      const SizedBox(height:50),
-                      Expanded(
+                      // const SizedBox(height:50),
+                      entries.isNotEmpty ?
+                      Expanded( 
                         child: ListView.builder(
-                        padding: const EdgeInsets.all(8),
+                        
+                        padding: const EdgeInsets.fromLTRB(10,50, 10,10),
                         itemCount: entries.length,
                         itemBuilder: (BuildContext context, int index) {
                           // print(index);
                           // var lastItem = index == entries.length - 1;
+
                           return Container(
                             padding: const EdgeInsets.fromLTRB(15, 0, 0,0),
                             margin:index == 0 ? const EdgeInsets.all(0) : const EdgeInsets.fromLTRB(0, 5, 0, 0),
                             decoration: BoxDecoration(
-                              color: index % 2 == 0 ?const  Color.fromRGBO(165, 147, 216, 1) : const Color.fromRGBO(165, 147, 216, 0.7),
+                              color: index % 2 == 0 ?const  Color.fromRGBO(25, 0, 84, 0.8) : const Color.fromRGBO(200, 120, 31, 0.7),
                               borderRadius: BorderRadius.circular(10)
                             ),
                             child: 
@@ -114,17 +117,18 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                 const  Column(
+                                  Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Icon(Icons.check, color: Color.fromRGBO(25, 0, 84, 1), )
+                                      // Icon(Icons.check, color: Colors.white, )
+                                      Text('${index + 1}', style: const TextStyle(color: Colors.white),)
                                     ],
                                   ),
                                   const SizedBox(width:20),
                                   Expanded(
                                     flex:1,
                                     child: 
-                                      Text('${entries[index]}', style: const TextStyle(color: Color.fromRGBO(25, 0, 84, 1)),)
+                                      Text('${entries[index]}', style: const TextStyle(color: Colors.white),)
                                     
                                   ),
                                   Column(
@@ -135,7 +139,7 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                                         setState(() {
                                           entries.removeAt(index);
                                         });
-                                      }, child: const Icon(Icons.delete, color: Color.fromRGBO(25, 0, 84, 1),))
+                                      }, child: const Icon(Icons.delete, color: Colors.white))
                                     ],)
                                   ],
                                   
@@ -143,7 +147,7 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                           );
                         }
                       )
-                        )
+                        ) : const Center(child: Text('No items')),
                     ],
                   ),
                   )
