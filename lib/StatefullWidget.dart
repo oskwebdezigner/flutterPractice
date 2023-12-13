@@ -1,0 +1,158 @@
+import 'package:flutter/material.dart';
+
+class StateFullWidget extends StatefulWidget {
+  const StateFullWidget({super.key});
+
+ 
+
+  @override
+  State<StateFullWidget> createState() => _StateFullWidgetState();
+}
+
+class _StateFullWidgetState extends State<StateFullWidget> {
+
+   TextEditingController itemName = TextEditingController();
+
+   List entries = [
+    // 'a', 'b', 'c'
+    ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children:<Widget> [
+            Expanded(
+              flex:1,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  color:  Color.fromRGBO(25, 0, 84, 1),
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(20))
+                ),
+                child: const Text('Todo List', style: TextStyle(color: Colors.white, fontSize: 20.0),)
+              )
+              ),
+              Expanded(
+              flex:5,
+              child: Container(
+                alignment: Alignment.topLeft,
+                decoration: const BoxDecoration(
+                  color:  Color.fromRGBO(25, 0, 84, 1),
+                ),
+                child:Container(
+                  alignment: Alignment.topLeft,
+                  padding: const EdgeInsets.all(15),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex:3,
+                            child:
+                              TextFormField(
+                                controller: itemName,
+                                style: const TextStyle(color: Color.fromRGBO(25, 0, 84, 1),),
+                                decoration: InputDecoration(
+                                  hintText: 'Add Item', 
+                                  hintStyle: const TextStyle(color: Color.fromRGBO(25, 0, 84, 1),),
+                                  prefixIconColor: const Color.fromRGBO(25, 0, 84, 1),
+                                  border: UnderlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                                  prefixIcon: const Icon(Icons.add),
+                                 
+                                  focusColor: Colors.white,
+                                  
+                                  labelStyle: const TextStyle(color: Colors.white),
+                              ),
+                              )
+                            
+                          ),
+                            Expanded(
+                            flex:1, 
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromRGBO(25, 0, 84, 1),
+                                foregroundColor: Colors.white,
+                                textStyle: const TextStyle(color: Colors.green, decorationStyle: TextDecorationStyle.dashed)
+                              ),
+                              onPressed: () {
+                                if (itemName.text.isNotEmpty) {
+                                  setState(() {
+                                    entries.add(itemName.text);
+                                    itemName.clear();
+                                  });
+                                }
+                              },
+                            child: const Text('Add'),
+                            )
+                            )
+                        ],
+                      ),
+                      const SizedBox(height:50),
+                      Expanded(
+                        child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: entries.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          // print(index);
+                          // var lastItem = index == entries.length - 1;
+                          return Container(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 0,0),
+                            margin:index == 0 ? const EdgeInsets.all(0) : const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            decoration: BoxDecoration(
+                              color: index % 2 == 0 ?const  Color.fromRGBO(165, 147, 216, 1) : const Color.fromRGBO(165, 147, 216, 0.7),
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: 
+                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                 const  Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.check, color: Color.fromRGBO(25, 0, 84, 1), )
+                                    ],
+                                  ),
+                                  const SizedBox(width:20),
+                                  Expanded(
+                                    flex:1,
+                                    child: 
+                                      Text('${entries[index]}', style: const TextStyle(color: Color.fromRGBO(25, 0, 84, 1)),)
+                                    
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      TextButton(onPressed: () {
+                                        setState(() {
+                                          entries.removeAt(index);
+                                        });
+                                      }, child: const Icon(Icons.delete, color: Color.fromRGBO(25, 0, 84, 1),))
+                                    ],)
+                                  ],
+                                  
+                              ),
+                          );
+                        }
+                      )
+                        )
+                    ],
+                  ),
+                  )
+                )
+              )
+              
+          ],
+        )
+      )
+    );
+  }
+}
