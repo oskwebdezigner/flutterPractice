@@ -180,7 +180,14 @@ _list() => _contacts.isNotEmpty ? Expanded(
                   //   size: 30.0,
                   // ),
                   
-                  leading: Text((index + 1).toString()),
+                  // leading: Text((index + 1).toString()),
+                  leading:TextButton(onPressed: () {
+                      setState(() {
+                        _name.text = _contact.name!;
+                        _phone.text = _contact.phone!;
+                      });
+                      }, 
+                     child: const Icon(Icons.edit, color: Color.fromRGBO(255, 146, 40, 1))),
                   title: Text(
                      _contacts[index].name!.toCapitalized(),
                     style: const TextStyle(
@@ -227,9 +234,11 @@ _onSubmit() async {
   form?.save();
   if (_formKey.currentState!.validate()) {
     setState(() {
-      form?.reset();
+      // form?.reset();
     _contacts.add(Contact(id:null,name:_contact.name,phone:_contact.phone));
-    
+    // form?.reset();
+    _name.clear();
+    _phone.clear();
     });
     
   }
