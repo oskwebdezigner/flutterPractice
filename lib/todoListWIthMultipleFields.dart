@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'string_extension.dart';
-// import 'package:myapp/Contact.dart';
 
 class TodoListWIthMultipleFields extends StatefulWidget {
   const TodoListWIthMultipleFields({super.key});
@@ -20,8 +19,6 @@ class TodoListWIthMultipleFields extends StatefulWidget {
         side: BorderSide(color: Color.fromRGBO(25, 0, 84, 1), width: 1),
         borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
-  // shape: Border(top:BorderSide(width: 20),
-// )
 );
 
 class _TodoListWIthMultipleFieldsState extends State<TodoListWIthMultipleFields> {
