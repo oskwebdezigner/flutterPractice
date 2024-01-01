@@ -20,6 +20,7 @@ class _StateFullWidgetState extends State<StateFullWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Container(
         color: Colors.white,
         child: Column(
@@ -32,7 +33,33 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                   color:  Color.fromRGBO(25, 0, 84, 1),
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(20))
                 ),
-                child: const Text('Todo List', style: TextStyle(color: Colors.white, fontSize: 20.0),)
+                child:   Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        BackButton(
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+
+                       )
+                    ],
+                  ),
+                   const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Todo List', style: TextStyle(color: Colors.white, fontSize: 20.0),)
+                    ],
+                    ),
+                    const SizedBox(height:50, width:50)
+                  ],
+                ),
+                // 
               )
               ),
               Expanded(
@@ -70,6 +97,10 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                                   
                                   labelStyle: const TextStyle(color: Colors.white),
                               ),
+                              validator: (value){
+                                  if(value == null || value.isEmpty) { return 'Please enter New Item';}
+                                return null;
+                              },
                               )
                             
                           ),
@@ -139,7 +170,8 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                                         setState(() {
                                           entries.removeAt(index);
                                         });
-                                      }, child: const Icon(Icons.delete, color: Colors.white))
+                                      }, child: const Icon(Icons.delete, color: Colors.white)),
+                                      
                                     ],)
                                   ],
                                   
@@ -147,7 +179,10 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                           );
                         }
                       )
-                        ) : const Center(child: Text('No items')),
+                        ) : const Padding(
+                          padding:  EdgeInsets.fromLTRB(10,50, 10,10),
+                          child:  Center(child: Text('No items')),
+                        ),
                     ],
                   ),
                   )

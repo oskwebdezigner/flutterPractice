@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:myapp/todoList.dart';
+import 'package:myapp/TodoListWIthMultipleFields.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               borderRadius: BorderRadius.circular(20)
             ),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+              padding: const EdgeInsets.all(15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -87,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                     Text('Know Your Lucky Number', textAlign: TextAlign.left, textDirection: TextDirection.rtl, style: TextStyle(fontSize: 16, color:Colors.white)),
-                    Text('Lorem ipsum dolor sit amet, consetetur sadipscing elitr', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color:Colors.white)),
+                    Text('Lorem ipsum dolor sit amet, consetetur sadipscing elitr', textAlign: TextAlign.left, style: TextStyle(fontSize: 12, color:Colors.white)),
                   ],
                     )
                     ),
@@ -109,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               borderRadius: BorderRadius.circular(20)
             ),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+              padding: const EdgeInsets.all(15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -260,6 +261,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const TodoList()),
+                );
+              },
+              child: const Text('Enabled'),
+            ),
+            ElevatedButton(
+              // style: style,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TodoListWIthMultipleFields()),
                 );
               },
               child: const Text('Enabled'),
