@@ -12,6 +12,17 @@ class TodoListWIthMultipleFields extends StatefulWidget {
   State<TodoListWIthMultipleFields> createState() => _TodoListWIthMultipleFieldsState();
 }
 
+ const snackBar = SnackBar(
+  content:  Text('Item Added'),
+  backgroundColor: Color.fromRGBO(25, 0, 84, 1),
+  elevation: 20.0,
+  shape: RoundedRectangleBorder(
+        side: BorderSide(color: Color.fromRGBO(25, 0, 84, 1), width: 1),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+  // shape: Border(top:BorderSide(width: 20),
+// )
+);
 
 class _TodoListWIthMultipleFieldsState extends State<TodoListWIthMultipleFields> {
 
@@ -22,6 +33,8 @@ class _TodoListWIthMultipleFieldsState extends State<TodoListWIthMultipleFields>
 
   final TextEditingController _name = TextEditingController();
   final TextEditingController _phone = TextEditingController();
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -239,6 +252,7 @@ _onSubmit() async {
     // form?.reset();
     _name.clear();
     _phone.clear();
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
     
   }
