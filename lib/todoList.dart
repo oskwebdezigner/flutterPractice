@@ -42,10 +42,10 @@ class TodoList extends StatelessWidget {
                 ElevatedButton(
                   child:const Text('Todo List Screen'),
                   onPressed: (){
-                  Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => const StateFullWidget()),
-                  );
+                  // Navigator.push(
+                  //   context, 
+                  //   MaterialPageRoute(builder: (context) => const StateFullWidget()),
+                  // );
                 },)
                 
                 ),

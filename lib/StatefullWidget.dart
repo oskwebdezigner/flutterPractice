@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class StateFullWidget extends StatefulWidget {
-  const StateFullWidget({super.key});
+ const StateFullWidget({super.key, required this.image});
 
- 
+
+  final ImageProvider? image;
 
   @override
   State<StateFullWidget> createState() => _StateFullWidgetState();
@@ -124,6 +125,24 @@ class _StateFullWidgetState extends State<StateFullWidget> {
                             )
                             )
                         ],
+                      ),
+                      Column(
+                        children:[ Container(
+      width: 200,
+      height:200,
+      margin: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50), 
+        color: Colors.cyan,
+        image:DecorationImage(
+          image: widget.image ?? widget.image!,
+          fit: BoxFit.fitWidth,
+        )
+        ),
+      // color: Colors.white,
+      // child: Image (image: widget.image ?? widget.image!, width: 100, height:100,
+      // ),
+                      )]
                       ),
                       // const SizedBox(height:50),
                       entries.isNotEmpty ?

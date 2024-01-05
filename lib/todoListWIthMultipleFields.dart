@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'string_extension.dart';
+import 'package:myapp/StatefullWidget.dart';
 
 class TodoListWIthMultipleFields extends StatefulWidget {
   const TodoListWIthMultipleFields({super.key});
@@ -22,6 +23,8 @@ class TodoListWIthMultipleFields extends StatefulWidget {
 );
 
 class _TodoListWIthMultipleFieldsState extends State<TodoListWIthMultipleFields> {
+
+ 
 
   final Contact _contact= Contact();
   final List<Contact> _contacts = [];
@@ -75,7 +78,7 @@ class _TodoListWIthMultipleFieldsState extends State<TodoListWIthMultipleFields>
                   
                   // mainAxisAlignment: MainAxisAlignment.start,
                   // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[_form(), _list()],
+                  children: <Widget>[_form(), _image(), _list()],
                 )
                 ),
               ),
@@ -86,6 +89,30 @@ class _TodoListWIthMultipleFieldsState extends State<TodoListWIthMultipleFields>
     ),
    );
   }
+
+  _image() => 
+  InkWell(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const StateFullWidget(image: AssetImage('assets/images/friend1.png') )),
+      );
+    },
+    child: Container(
+      width: 200,
+      height:200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50), 
+        image:const  DecorationImage(
+          image: AssetImage('assets/images/friend1.png'),
+          fit: BoxFit.fitWidth,
+        )),)
+    // child: Ink.image(
+    //   image: const AssetImage('assets/images/friend1.png'),
+    //   width: 200,
+    //   height:200,),
+  );
+  
 
   _form() => Container(
         color: Colors.white,
@@ -261,6 +288,8 @@ _onSubmit() async {
 class Contact {
 
   Contact({this.id,this.name,this.phone});
+
+  
 
   int? id;
   String? name;
